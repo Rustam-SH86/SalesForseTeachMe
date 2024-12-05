@@ -1,32 +1,37 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import tests.BaseTest;
+import utils.Urls;
+
+import static org.openqa.selenium.By.className;
 
 public class LoginPage extends BasePage {
 
-    public LoginPage(WebDriver driver) {
-       super(driver);
-    }
-
-    private final By USER_INPUT = (By.id("user-name"));
+    private final By USER_INPUT = (By.id("username"));
     private final By PASSWORD_INPUT = (By.id("password"));
-    private final By LOGIN_BUTTON = (By.className("submit-button"));
-    private final By ERROR_MESSAGE = By.cssSelector(".error-message-container.error");
+    private final By LOGIN_BUTTON = By.xpath("//*[@id='Login']");
 
-    public void open() {
-        driver.get(BASE_URL);
+
+
+
+    public LoginPage(WebDriver driver) {
+        super(driver);
     }
 
-    public void login(String user, String password) {
-        driver.findElement(USER_INPUT).sendKeys(user);
-        driver.findElement(PASSWORD_INPUT).sendKeys(password);
+    @Step("Open login page")
+    public LoginPage open() {
+        driver.get(Urls.LOGIN_PAGE);
+        return this;
+    }
+
+
+    @Step("Login with valid credentials")
+    public HomePage LogIn() {
+        driver.findElement(USER_INPUT).sendKeys("abobus@example.com");
+        driver.findElement(PASSWORD_INPUT).sendKeys("enter555");
         driver.findElement(LOGIN_BUTTON).click();
+        return new HomePage(driver);
     }
-    public String getErrorMessage() {
-        return driver.findElement(ERROR_MESSAGE).getText();
-
-    }
-
 }
