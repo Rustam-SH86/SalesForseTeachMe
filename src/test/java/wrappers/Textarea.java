@@ -11,9 +11,8 @@ public class Textarea {
         this.driver = driver;
         this.label = label;
     }
-
     public void fillAccountsField(String text) {
-        driver.findElement(By.xpath(String.format("//label[text()='%s']//ancestor::lightning-textarea//textarea",label)))
+        driver.findElement(By.xpath(String.format("//label[text()='%s']//ancestor::lightning-textarea//textarea", label)))
                 .sendKeys(text);
     }
 }

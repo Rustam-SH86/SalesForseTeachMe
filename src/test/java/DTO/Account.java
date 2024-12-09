@@ -1,38 +1,22 @@
 package DTO;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+
+
+@Data
+@Builder
 public class Account {
-    String accountName;
-    String phone;
-    String fax;
-    String rating;
-    String street;
-
-    public Account(String accountName, String phone, String fax,String street, String rating) {
-        this.accountName = accountName;
-        this.phone = phone;
-        this.fax = fax;
-        this.rating = rating;
-        this.street = street;
-    }
-
-    public String getStreet() {
-        return street;
-    }
-
-    public String getAccountName() {
-        return accountName;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public String getFax() {
-        return fax;
-    }
-
-    public String getRating() {
-        return rating;
-    }
-
+    private String accountName;
+    private String phone;
+    private String fax;
+    private String rating;
+    private String accountSite;
+    private String industry;
+    private String ownership;
+    private String employees;
+    private String parentAccount;
+    private String street;
+    private String type;
 }

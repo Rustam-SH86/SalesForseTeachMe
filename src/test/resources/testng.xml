@@ -9,7 +9,7 @@
     </test> <!-- Test -->
     <test name="Thread#2">
         <classes>
-            <class name="tests.CartTest"/>
+            <class name="tests.AccountTest"/>
             <parameter name="browser" value="safari"></parameter>
 
         </classes>

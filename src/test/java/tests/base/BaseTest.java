@@ -9,9 +9,11 @@ import org.openqa.selenium.safari.SafariDriver;
 import org.testng.ITestContext;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
-
+import pages.HomePage;
 import pages.LoginPage;
 import pages.NewAccountModal;
+import steps.AccountStep;
+import steps.LoginStep;
 import tests.TestListener;
 import utils.AllureUtils;
 
@@ -20,8 +22,11 @@ import java.time.Duration;
 @Listeners(TestListener.class)
 public class BaseTest {
     public WebDriver driver;
-    public NewAccountModal newAccountModal;
-    public LoginPage loginPage;
+    protected NewAccountModal newAccountModal;
+    protected LoginPage loginPage;
+    protected HomePage homePage;
+    protected AccountStep accountStep;
+    protected LoginStep loginStep;
 
     @Parameters({"browser"})
     @BeforeTest
@@ -38,12 +43,11 @@ public class BaseTest {
         } else if (browser.equalsIgnoreCase("safari")) {
             driver = new SafariDriver();
         }
-
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         newAccountModal = new NewAccountModal(driver);
         loginPage = new LoginPage(driver);
-
-
+        accountStep = new AccountStep(driver);
+        loginStep = new LoginStep(driver);
     }
 
     @AfterMethod(alwaysRun = true)
